@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>쇼핑몰 메인페이지</title>
+
+    <style type="text/css">
+        .top-image {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 600px;
+            height: 400px;
+        }
+
+        .wrap {
+            width: 600px;
+            margin: 10px auto;
+        }
+    </style>
+
+    <script>
+        function buy() {
+            alert('주문이 완료되었습니다');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="title">
+            <img class="top-image"
+                src="https://image.hellonature.net/shop/data/goods/img/22024/c_o_1542344164634l1.jpg">
+            <div>
+                <h2 style="display: inline">아우어베이커리의 시그니처 메뉴</h2>
+                &nbsp;&nbsp;<span class="price">가격: 4,700원/개</span>
+            </div>
+            <br>
+            <p>이제는 국내를 대표하는 베이커리 맛집이죠? 인정할 수밖에 없는 핫한 브랜드 아우어베이커리의 시그니처 메뉴 더티초코예요. 매장에서도 1인당 2개밖에 살 수 없는 귀한 빵. 이제 웨이팅 없이
+                클릭 한번으로 집에서도 아우어베이커리의 더티초코를 맛볼 수 있어요. 흔하지 않은 기회이니 놓치지 마세요.</p>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="username">주문자 이름</label>
+                    </div>
+                    <input type="text" class="form-control" id="username">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="amount">수량</label>
+                    </div>
+                    <select class="form-control" id="amonut">
+                        <option selected>-- 수량을 선택하세요 --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="address">주소</label>
+                    </div>
+                    <input type="text" class="form-control" id="address">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="phone">전화번호</label>
+                    </div>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+            </div>
+        </form>
+
+        <div style="text-align: center;">
+            <button type="submit" onclick="buy()" class="btn-primary btn-lg">주문하기</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
