@@ -19,26 +19,16 @@
 
     <script>
         function q1() {
-            // 여기에 코드를 입력하세요
-            // $('#img-cat').empty();
-            // $.ajax({
-            //     type: "GET",
-            //     url = "https://api.thecatapi.com/v1/images/search",
-            //     data: {},
-            //     success : function(response){
-            //         let img_url = response[0]['url'];
-            //         $('#img-cat').attr("src",img_url); //attr은 어트리뷰트 attr("넣을곳", 넣을 요소값)
-            //     }
-            // })
             $.ajax({
                 type: "GET",
                 url: "https://api.thecatapi.com/v1/images/search",
                 data: {},
                 success: function (response) {
-                    let imgurl = response[0]['url'];
-                    $("#img-cat").attr("src", imgurl);
+                    let img_url = response[0]['url'];
+                    $("#img-cat").attr("src", img_url);
                 }
             })
+        }
     </script>
 
 </head>
@@ -59,5 +49,3 @@
         </div>
     </div>
 </body>
-
-</html>
