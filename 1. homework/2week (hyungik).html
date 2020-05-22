@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 첫번째 과제 : 원페이지 쇼핑몰 만들기 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>꽃</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- 구글 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Gothic&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        .warp{
+            width: 700px;
+            height: auto;
+            margin: auto;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 20px;
+        }
+        .top-image{
+            width: 700px;
+            height: 300px;
+        }
+        .mytitle{
+            color:  red;
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 90px;
+        }
+        .intro{
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+    
+    <script>
+        function order(){
+            alert("주문이 완료 되었습니다.")
+        }   
+    </script>
+</head>
+
+<body>
+    <div class="warp">
+       
+        <img class="top-image" src="https://blog.hmgjournal.com/images_n/contents/180508_flower01.jpg">
+
+        <div class="intro">
+            <h1 class="mytitle" style="display:inline">장미를 팝니다</h1>
+            &nbsp;&nbsp; <span class="price"> 가격 : 10,000원/개 </span>
+            <p>
+                특별한 날에 선물하기 좋은 꽃입니다. 좋은 향기를 가지고 있어요. <br>장미 한송이로 마음을 전해 보세요. 
+            </p>
+            <hr>
+        </div>
+        
+        <form>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="username">주문자 이름</label>
+                    </div>
+                    <input type="text" class="form-control" id="username">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="amount">수량</label>
+                    </div>
+                    <select class="form-control" id="amonut">
+                        <option selected>-- 수량을 선택하세요 --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="address">주소</label>
+                    </div>
+                    <input type="text" class="form-control" id="address">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="phone">전화번호</label>
+                    </div>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button onclick="order()" type="submit" class="btn btn-default">주문하기</button>
+            </div>
+            
+        </form>        
+     
+</body>
