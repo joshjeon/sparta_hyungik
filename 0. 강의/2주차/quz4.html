@@ -25,7 +25,8 @@
                 data: {},
                 success: function (response) {
                     let img_url = response[0]['url'];
-                    $("#img-cat").attr("src", img_url);
+                    // url넣는법
+                    $("#img-cat").attr("src", img_url); 
                 }
             })
         }
