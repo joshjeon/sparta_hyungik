@@ -52,12 +52,12 @@
         // 로딩되자 마자 자바스크립트 실행
         $(document).ready(function () {
             // your code
-            $('#orders-box').empty();
-            rate();
-            listing();
+            $('#orders-box').empty();   //주문 명부 공란
+            rate();     //환율
+            listing();  //주문 명부 show
         });
 
-        function rate() {
+        function rate() {   //환율표시
             $.ajax({
                 type: "GET", // GET 방식으로 요청한다.
                 url: "https://api.manana.kr/exchange/rate.json",
@@ -68,8 +68,7 @@
                 }
             })
         }
-        function order() {
-
+        function order() {  //주문 명부 저장
             let username = $('#username').val();
             let amount = $('#amount').val();
             let address = $('#address').val();
@@ -103,7 +102,7 @@
             })
         }
 
-        function listing() {
+        function listing() { //주문 명부 show
             $.ajax({
                 type: "GET", // get 방식으로 요청한다.
                 url: "/order",
