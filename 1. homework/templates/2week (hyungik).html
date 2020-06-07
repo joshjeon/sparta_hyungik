@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+    <!-- 원페이지 쇼핑몰 만들기 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>꽃</title>
+
+    <!-- jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- 구글 폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Gothic&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        .warp {
+            width: 700px;
+            height: auto;
+            margin: auto;
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 20px;
+        }
+
+        .top-image {
+            width: 700px;
+            height: 300px;
+        }
+
+        .mytitle {
+            color: red;
+            font-family: 'Nanum Brush Script', cursive;
+            font-size: 90px;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .exhcange_rate {
+            text-align: left;
+            color: blue;
+        }
+    </style>
+
+    <script>
+        // 로딩되자 마자 자바스크립트 실행
+        $(document).ready(function () {
+            // your code
+            $('#orders-box').empty();
+            rate();
+            listing();
+        });
+
+        function rate() {
+            $.ajax({
+                type: "GET", // GET 방식으로 요청한다.
+                url: "https://api.manana.kr/exchange/rate.json",
+                data: {}, // 요청하면서 함께 줄 데이터 (GET 요청시엔 비워두세요)
+                success: function (response) { // 서버에서 준 결과를 response라는 변수에 담음
+                    let exhcange_rate = response[1]["rate"]; // 서버에서 준 결과를 이용해서 나머지 코드를 작성
+                    $('#exhcange_rate').append(exhcange_rate);
+                }
+            })
+        }
+        function order() {
+
+            let username = $('#username').val();
+            let amount = $('#amount').val();
+            let address = $('#address').val();
+            let phone = $('#phone').val();
+
+            //주문 정보가 다 입력되었는지 체크
+            if (username == '') {
+                alert("이름을 입력하세요");
+                return;
+            } else if (amount == '-- 수량을 선택하세요 --') {
+                alert("수량을 입력하세요");
+                return;
+            } else if (address == '') {
+                alert("주소를 입력하세요");
+                return;
+            } else if (phone == '') {
+                alert("번호를 입력하세요");
+                return;
+            }
+
+            $.ajax({
+                type: "POST", // POST 방식으로 요청한다.
+                url: "/order",
+                data: { username_give: username, amount_give: amount, address_give: address, phone_give: phone }, // 요청하면서 함께 줄 데이터 (GET 요청시엔 비워두세요)
+                success: function (response) { // 서버에서 준 결과를 response라는 변수에 담음
+                    if (response['result'] == 'success') {
+                        alert(response['msg']);
+                        window.location.reload();
+                    }
+                }
+            })
+        }
+
+        function listing() {
+            $.ajax({
+                type: "GET", // get 방식으로 요청한다.
+                url: "/order",
+                data: {}, // 요청하면서 함께 줄 데이터 (GET 요청시엔 비워두세요)
+                success: function (response) { // 서버에서 준 결과를 response라는 변수에 담음
+                    if (response['result'] == 'success') {
+                        let orders = response['orders'];
+                        for (i = 0; i < orders.length; i++) {
+                            let username = orders[i]['username'];
+                            let amount = orders[i]['amount'];
+                            let address = orders[i]['address'];
+                            let phone = orders[i]['phone'];
+
+                            let temp_html = `
+                                <tr>
+                                <td>${username}</td>
+                                <td>${amount}</td>
+                                <td>${address}</td>
+                                <td>${phone}</td>
+                                </tr>
+                            `;
+                            $('#orders-box').append(temp_html)
+                        }
+                    } else{
+                        alert('주문을 받아오지 못했습니다')
+                    }
+                }
+            })
+        }
+    </script>
+
+
+<body>
+    <div class="warp">
+
+        <img class="top-image" src="https://blog.hmgjournal.com/images_n/contents/180508_flower01.jpg">
+
+        <div class="intro">
+            <h1 class="mytitle" style="display:inline">장미를 팝니다</h1>
+            &nbsp;&nbsp; <span class="price"> 가격 : 10,000원/개 </span>
+            <p>
+                특별한 날에 선물하기 좋은 꽃입니다. 좋은 향기를 가지고 있어요. <br>장미 한송이로 마음을 전해 보세요.
+            </p>
+            <p class="exhcange_rate">
+                달러-원 환율 : <span id="exhcange_rate"></span>
+            </p>
+            <hr>
+        </div>
+
+        <!-- 정보 입력하는 곳 -->
+        <div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="username">주문자 이름</label>
+                    </div>
+                    <input type="text" class="form-control" id="username">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="amount">수량</label>
+                    </div>
+                    <select class="form-control" id="amount">
+                        <option selected>-- 수량을 선택하세요 --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="address">주소</label>
+                    </div>
+                    <input type="text" class="form-control" id="address">
+                </div>
+            </div>
+
+            <div class="form-group  ">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="phone">전화번호</label>
+                    </div>
+                    <input type="text" class="form-control" id="phone">
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button onclick="order()" type="submit" class="btn btn-default">주문하기</button>
+                <br>
+                <br>
+            </div>
+            <div class="orders">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="meta_info" scope="col">주문자</th>
+                            <th class="meta_info" scope="col">수량</th>
+                            <th class="meta_info" scope="col">주소</th>
+                            <th class="meta_info" scope="col">전화번호</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-box">
+                        <tr>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+</body>
