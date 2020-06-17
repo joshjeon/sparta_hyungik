@@ -1,0 +1,1 @@
+print("hellow world! @EC2, AWS")
