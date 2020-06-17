@@ -1,0 +1,13 @@
+.form-post {
+    width: 200px;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-color: #e9ecef;
+    border-radius: 0.3rem;
+    border: solid;
+    display: block;
+}
+
+* {
+    color: green
+}
