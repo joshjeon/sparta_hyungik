@@ -8,71 +8,84 @@
 
     <title>헬린이튜브</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
     <meta name="description" content="Source code generated using layoutit.com">
     <meta name="author" content="LayoutIt!">
 
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"> -->
-    <link href="static/css/style.css" rel="stylesheet">
-    <!-- <script src="static/js/jquery.min.js"></script>
-    <script src="static/js/bootstrap.min.js"></script>
-    <script src="static/js/scripts.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 
-    <!-- <style>
-        .form-post {
-            width: 200px;
-            padding: 2rem;
-            margin: 2rem auto;
-            border-color: #e9ecef;
-            border-radius: 0.3rem;
-            border: solid;
-            display: block;
-        }
-    </style> -->
+    <!-- JS -->
+    <script type=text/javascript src="{{url_for('static', filename='/js/scripts.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+        </script>
+
+    <script>
+        $(document).ready(function () {
+            show_all();
+        });
+    </script>
+
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron">
-                    <h2>
+                    <h1>
                         헬린이튜브에 오신걸 환영합니다!
-                    </h2>
-                    <p>
+                    </h1>
+                    <h2>
                         운동할때 자주 참고하는 유투브와 운동법을 기록하세요!
-                    </p>
+                    </h2>
+                    <hr>
                     <p>
-                        <a onclick="openclose()" class="btn btn-primary btn-large" href="#">운동 포스팅박스 열기</a>
+                        <a id="btn-posting-box" onclick="openclose()" class="btn btn-primary btn-large" href="#">
+                            운동카드 포스팅 열기</a>
                     </p>
                 </div>
             </div>
         </div>
         <div class="form-post" id="posting-box">
             <div class="form-group">
-                <label for="exampleFormControlInput1">홈트 or 헬트</label>
-                <input id="posting-type" class="form-control" placeholder="">
+                <label for="type">홈트 or 헬트</label>
+                <!-- <input id="posting-type" class="form-control" placeholder=""> -->
+                <select name="type" id="type">
+                    <option>홈트</option>
+                    <option>헬트</option>
+                </select>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">제목</label>
-                <input id="posting-title" class="form-control" placeholder="">
+                <label for="memo">운동메모</label>
+                <textarea id="memo" class="form-control" rows="2"></textarea>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">운동메모</label>
-                <textarea id="posting-memo" class="form-control" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">유투브 URL</label>
-                <input id="posting-url" class="form-control" placeholder="">
+                <label for="url">유투브 URL</label>
+                <input id="url" class="form-control" placeholder="">
             </div>
 
-            <button class="btn btn-primary">기사저장</button>
+            <button onclick="posting()" class="btn btn-primary">운동저장</button>
 
         </div>
 
-        <div class="row">
+        <div class="row" , id="cards">
+            <!-- <div class="col-md-4">
+                <h2>
+                    제목이 들어가느곳
+                </h2>
+                <p>
+                    운동 메모 들어가는곳
+                </p>
+                <p>
+                    유투브 썸네일? 들어가는곳
+                </p>
+                <p>
+                    <a class="btn" href="#" target="_blank">View details »</a>
+                </p>
+            </div>
             <div class="col-md-4">
                 <h2>
                     제목이 들어가느곳
@@ -80,6 +93,7 @@
                 <p>
                     운동 메모 들어가는곳
                 </p>
+               
                 <p>
                     유투브 썸네일? 들어가는곳
                 </p>
@@ -115,21 +129,7 @@
                     <a class="btn" href="#">View details »</a>
                 </p>
             </div>
-            <div class="col-md-4">
-                <h2>
-                    제목이 들어가느곳
-                </h2>
-                <p>
-                    운동 메모 들어가는곳
-                </p>
-                <p>
-                    유투브 썸네일? 들어가는곳
-                </p>
-                <p>
-                    <a class="btn" href="#">View details »</a>
-                </p>
-            </div>
-        </div>
+        </div> -->
     </div>
 
 

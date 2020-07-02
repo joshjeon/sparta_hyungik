@@ -1,5 +1,8 @@
+* {
+    font-family: 'Stylish', sans-serif;
+  }
 .form-post {
-    width: 200px;
+    width: 400px;
     padding: 2rem;
     margin: 2rem auto;
     border-color: #e9ecef;
@@ -8,6 +11,6 @@
     display: block;
 }
 
-* {
-    color: green
+#posting-box {
+  display: none;
 }
